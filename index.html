@@ -72,7 +72,7 @@
         <div class="row justify-content-center fs-8 text-center">
           <div class="col-md-4">Saya memiliki kesukaan dalam hal web-developer. waktu luang saya banyak saya gunakan untuk mempelajari hal-hal tentang coding , saya berhasil meningkatkan kemampuan saya hingga bisa membuat beberapa project. Kemampuan coding yang saya miliki berperan penting dalam mencapai target yang dibebankan kepada saya</div>
           <div class="col-md-4">
-            bingung aaa, yaa anda tahu bingung?, saat ini saya sedang bingung mengisi "about me" dan "Galery", jadi maklum sahaja jika terlihat aneh (seperti hidupmu), setidaknya bantu saya mencari sesuatu yangpas untuk mengisinya
+            bingung aaa, yaa anda tahu bingung?, saat ini saya sedang bingung mengisi "about me" dan "Galery", jadi maklum sahaja jika terlihat aneh (seperti hidupmu), setidaknya bantu saya mencari sesuatu yang pas untuk mengisinya
           </div>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -128,7 +128,11 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-8">
-            <form name="Web-Portofolio-contact>
+            <div class="alert alert-primary alert-dismissible fade show d-none myAllert" role="alert">
+              <strong>Terimakasih</strong> pesan anda telah terkirim
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <form name="Web-Portofolio-contact">
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nama Lengkap</label>
                 <input type="text" class="form-control" id="name" aria-describedby="name" name="nama">
@@ -143,7 +147,11 @@
                 <label for="Pesan" class="form-label">Pesan</label>
                 <textarea class="form-control" id="pesan" rows="3" name="pesan"></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Kirim</button>
+              <button type="submit" class="btn btn-primary btn-kirim">Kirim</button>
+              <button class="btn btn-primary d-none btn-loading" type="button" disabled>
+                <span class="spinner-grow spinner-grow-sm " role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
             </form>
           </div>
         </div>
@@ -167,14 +175,29 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script>
   const scriptURL = 'https://script.google.com/macros/s/AKfycbw5hKqxFgYOoyMVObVUZMZk1b8V1veBdUFgVjY745jghKPHW6vJFhD71H9ACr8iXOXg/exec'
-  const form = document.forms['submit-to-google-sheet']
+  const form = document.forms['Web-Portofolio-contact']
+
+  const btnKirim = document.querySelector('.btn-kirim')
+  const btnLoading = document.querySelector('.btn-loading')
+  const myAllert = document.querySelector('.myAllert')
 
   form.addEventListener('submit', e => {
     e.preventDefault()
+    //ketika sub  di klik//
+    //ketika proses//
+    //terkirim//
+    btnLoading.classList.Toggle('d-none')
+    btnKirim.classList.Toggle('d-none')
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => console.log('Success!', response))
+      .then(response => {
+        btnLoading.classList.Toggle('d-none')
+        btnKirim.classList.Toggle('d-none')
+        //setelah allert//
+        myAllert.classList.Toggle('d-none')
+        console.log('Success!', response)
+        })
       .catch(error => console.error('Error!', error.message))
   })
-</script>
+    </script>
   </body>
 </html>
