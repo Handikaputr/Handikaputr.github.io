@@ -151,10 +151,10 @@
               </div>
               <button type="submit" class="btn btn-primary btn-kirim">Kirim</button>
               
-                <button class="btn btn-primary btn-loading d-none" type="button" disabled>
-                <span class="spinner-grow spinner-grow-sm " role="status" aria-hidden="true"></span>
-                Loading...
-              </button>
+               <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                 <strong>Terimakasih</strong> pesan anda telah terkirim
+                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+               </div>
 
               
             </form>
@@ -188,7 +188,7 @@
   
       const btnLoading = document.querySelector('.btn-loading')
 
-      const myAllert = document.querySelector('.myAllert')
+      const allert = document.querySelector('.allert')
 
     form.addEventListener('submit', e => {
           e.preventDefault();
@@ -202,7 +202,7 @@
         btnLoading.classList.Toggle('d-none')
         btnKirim.classList.Toggle('d-none')
         //setelah allert//
-        myAllert.classList.Toggle('d-none')
+        allert.classList.Toggle('d-none')
         console.log('Success!', response)
       })
       .catch(error => console.error('Error!', error.message))
