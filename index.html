@@ -130,6 +130,11 @@
           <div class="col-md-8">
             
             <form name="submit-to-google-sheet">
+               <div class="alert alert-primary alert-dismissible fade show d-none myAllert" role="alert">
+              <strong>Terimakasih</strong> pesan anda telah terkirim
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+              
               <div class="mb-3">
                 <label for="name" class="form-label">Nama Lengkap</label>
                 <input type="text" class="form-control" id="name" aria-describedby="name" name="nama">
@@ -145,6 +150,11 @@
                 <textarea class="form-control" id="pesan" rows="3" name="pesan"></textarea>
               </div>
               <button type="submit" class="btn btn-primary btn-kirim">Kirim</button>
+              
+                <button class="btn btn-primary btn-loading d-none" type="button" disabled>
+                <span class="spinner-grow spinner-grow-sm " role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
 
               
             </form>
@@ -173,11 +183,28 @@
 
     const scriptURL = 'https://script.google.com/macros/s/AKfycbw5hKqxFgYOoyMVObVUZMZk1b8V1veBdUFgVjY745jghKPHW6vJFhD71H9ACr8iXOXg/exec'
     const form = document.forms['submit-to-google-sheet']
+    
+      const btnKirim = document.querySelector('.btn-kirim')
+  
+      const btnLoading = document.querySelector('.btn-loading')
+
+      const myAllert = document.querySelector('.myAllert')
 
     form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => console.log('Success!', response))
+          e.preventDefault();
+        //ketika sub  di klik//
+        //ketika proses//
+       btnLoading.classList.Toggle('d-none')
+       btnKirim.classList.Toggle('d-none')
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)});
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        btnLoading.classList.Toggle('d-none')
+        btnKirim.classList.Toggle('d-none')
+        //setelah allert//
+        myAllert.classList.Toggle('d-none')
+        console.log('Success!', response)
+      })
       .catch(error => console.error('Error!', error.message))
     })
     </script>
