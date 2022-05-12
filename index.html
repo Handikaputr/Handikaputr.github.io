@@ -194,15 +194,15 @@
           e.preventDefault();
         //ketika sub  di klik//
         //ketika proses//
-       btnKirim.classList.Toggle('d-none');
-       btnLoading.classList.Toggle('d-none');
+       btnKirim.classList.Toggle('d-none')
+       btnLoading.classList.Toggle('d-none')
       fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => {
-        btnKirim.classList.Toggle('d-none');
-        btnLoading.classList.Toggle('d-none');
+        btnKirim.classList.Toggle('d-none')
+        btnLoading.classList.Toggle('d-none')
         
         //setelah allert//
-        allert.classList.Toggle('d-none');
+        allert.classList.Toggle('d-none')
         console.log('Success!', response)
       })
       .catch(error => console.error('Error!', error.message))
