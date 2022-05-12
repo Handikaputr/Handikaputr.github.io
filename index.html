@@ -130,10 +130,7 @@
           <div class="col-md-8">
             
             <form name="submit-to-google-sheet">
-               <div class="alert alert-primary alert-dismissible fade show d-none myAllert" role="alert">
-              <strong>Terimakasih</strong> pesan anda telah terkirim
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+               
               
               <div class="mb-3">
                 <label for="name" class="form-label">Nama Lengkap</label>
@@ -151,10 +148,7 @@
               </div>
               <button type="submit" class="btn btn-primary btn-kirim">Kirim</button>
               
-               <div class="alert alert-warning alert-dismissible fade show d-none" role="alert">
-                 <strong>Terimakasih</strong> pesan anda telah terkirim
-                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-               </div>
+              
 
               
             </form>
@@ -184,18 +178,10 @@
     const scriptURL = 'https://script.google.com/macros/s/AKfycbw5hKqxFgYOoyMVObVUZMZk1b8V1veBdUFgVjY745jghKPHW6vJFhD71H9ACr8iXOXg/exec'
     const form = document.forms['submit-to-google-sheet']
     
-      const btnKirim = document.querySelector('.btn-kirim');
-  
-      const btnLoading = document.querySelector('.btn-loading');
-
-      const allert = document.querySelector('.allert');
+      
 
     form.addEventListener('submit', e => {
           e.preventDefault();
-        //ketika sub  di klik//
-        //ketika proses//
-       btnLoading.classList.Toggle('d-none');
-       btnKirim.classList.Toggle('d-none');
       fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => 
      
